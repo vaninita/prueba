@@ -11,7 +11,7 @@ public class SecurePage {
     }
     private By TEXTO_INGRESO = By.id("flash");
 
-    public String traerTextoErrorIngreso(){
+    public String traerMensajeDeIngreso(){
       return driver.findElement(TEXTO_INGRESO).getText();
     }
 }

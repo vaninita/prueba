@@ -1,5 +1,6 @@
 package Test;
 
+import Pages.HomePage;
 import Pages.LoginPage;
 import Pages.SecurePage;
 import base.BaseTest;
@@ -12,22 +13,40 @@ import static org.junit.Assert.assertNotNull;
 
 public class PrimerTest  extends BaseTest {
 
-@Test
-        public void PruebaTest(){
-               //HomePage homePage = new HomePage(driver);
+      @Test
+        public void LoginConCredencialesErroneas(){
+         WebDriver driver = getDriver();
 
+         HomePage homePage = new HomePage(driver);
+         LoginPage loginPage = new LoginPage(driver);
 
-               LoginPage loginPage = homePage.irALogin();
+               homePage.irALogin();
                loginPage.ingresarUsername("vsu");
                loginPage.ingresarPassword("ddfs");
 
                SecurePage securePage = loginPage.presionarBotonLogin();
-               String mensaje = securePage.traerTextoErrorIngreso();
+               String mensaje = securePage.traerMensajeDeIngreso();
 
-           //    assertEquals("No se encontro mensaje error de login","Your username is invalid!\n×",mensaje);
                assertNotNull("Mensajo no es nulo",mensaje);
-
+               assertEquals("No se encontro mensaje error de login","Your username is invalid!\n×",mensaje);
 
 }
+    @Test
+    public void LoginConCredencialesCorrectas(){
+        WebDriver driver = getDriver();
 
+        HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(driver);
+
+        homePage.irALogin();
+        loginPage.ingresarUsername("tomsmith");
+        loginPage.ingresarPassword("SuperSecretPassword!");
+
+        SecurePage securePage = loginPage.presionarBotonLogin();
+        String mensaje = securePage.traerMensajeDeIngreso();
+
+        assertNotNull("Mensajo no es nulo",mensaje);
+        assertEquals("No se encontro mensaje de login ok","You logged into a secure area!\n×",mensaje);
+
+    }
 }
