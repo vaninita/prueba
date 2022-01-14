@@ -20,7 +20,8 @@ public class PrimerTest  extends BaseTest {
          HomePage homePage = new HomePage(driver);
          LoginPage loginPage = new LoginPage(driver);
 
-               homePage.irALogin();
+              // homePage.irALogin();
+               homePage.irAOpcion("Form Authentication");
                loginPage.ingresarUsername("vsu");
                loginPage.ingresarPassword("ddfs");
 
