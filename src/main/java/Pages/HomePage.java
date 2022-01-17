@@ -11,9 +11,9 @@ public class HomePage {
             this.driver = driver;
         }
         private  final By FORM_AUTHENTICATION_LINK = By.linkText("Form Authentication");
+
         public LoginPage irALogin(){
             driver.findElement(FORM_AUTHENTICATION_LINK).click();
-
             return new LoginPage(driver);
         }
 
